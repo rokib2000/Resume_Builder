@@ -1,28 +1,38 @@
 <?php
 session_start();
-if(!isset($_SESSION['user_id'])) {
+if (!isset($_SESSION['user_id'])) {
     header("Location: login.php");
     exit;
 }
 
 include_once 'db_connect.php';
 
-if($_SERVER['REQUEST_METHOD'] == 'POST') {
+if ($_SERVER['REQUEST_METHOD'] == 'POST') {
     // Collect form data
     $resume_title = $_POST['resume_title'];
+    $name = $_POST['name'];
+    $father_name = $_POST['father_name'];
+    $mother_name = $_POST['mother_name'];
+    $present_address = $_POST['present_address'];
+    $permanent_address = $_POST['permanent_address'];
+    $date_of_birth = $_POST['date_of_birth'];
+    $nationality = $_POST['nationality'];
+    $religion = $_POST['religion'];
+    $marital_status = $_POST['marital_status'];
+    $gender = $_POST['gender'];
+    $blood_group = $_POST['blood_group'];
     $professional_title = $_POST['professional_title'];
     $summary = $_POST['summary'];
-    $skills = $_POST['skills'];
-    $languages = $_POST['languages'];
-    $personal_info = $_POST['personal_info'];
+    $skills = implode(', ', $_POST['skills']);
+    $languages = implode(', ', $_POST['languages']);
     $email = $_POST['email'];
     $phone_number = $_POST['phone_number'];
     $user_id = $_SESSION['user_id'];
 
     // Insert resume data
-    $query = "INSERT INTO resumes (user_id, resume_title, professional_title, summary, skills, languages, personal_info, email, phone_number) 
-              VALUES ('$user_id', '$resume_title', '$professional_title', '$summary', '$skills', '$languages', '$personal_info', '$email', '$phone_number')";
-              
+    $query = "INSERT INTO resumes (user_id, resume_title, name, father_name, mother_name, present_address, permanent_address, date_of_birth, nationality, religion, marital_status, gender, blood_group, professional_title, summary, skills, languages, email, phone_number) 
+              VALUES ('$user_id', '$resume_title', '$name', '$father_name', '$mother_name', '$present_address', '$permanent_address', '$date_of_birth', '$nationality', '$religion', '$marital_status', '$gender', '$blood_group', '$professional_title', '$summary', '$skills', '$languages', '$email', '$phone_number')";
+
     if (mysqli_query($conn, $query)) {
         $resume_id = mysqli_insert_id($conn);
 
@@ -56,6 +66,7 @@ if($_SERVER['REQUEST_METHOD'] == 'POST') {
 ?>
 <!DOCTYPE html>
 <html lang="en">
+
 <head>
     <meta charset="UTF-8">
     <meta name="viewport" content="width=device-width, initial-scale=1.0">
@@ -66,14 +77,17 @@ if($_SERVER['REQUEST_METHOD'] == 'POST') {
             background-color: #f8f9fa;
             padding-top: 50px;
         }
+
         .container {
             max-width: 800px;
         }
+
         .btn-add {
             margin-top: 10px;
         }
     </style>
 </head>
+
 <body>
     <div class="container">
         <h2 class="mb-4">Create Resume</h2>
@@ -81,6 +95,88 @@ if($_SERVER['REQUEST_METHOD'] == 'POST') {
             <div class="form-group">
                 <label for="resume_title">Resume Title</label>
                 <input type="text" class="form-control" id="resume_title" name="resume_title" required>
+            </div>
+            <h4>Personal Information</h4>
+            <div class="form-group">
+                <label for="name">Name</label>
+                <input type="text" class="form-control" id="name" name="name" required>
+            </div>
+            <div class="form-group">
+                <label for="father_name">Father’s Name</label>
+                <input type="text" class="form-control" id="father_name" name="father_name" required>
+            </div>
+            <div class="form-group">
+                <label for="mother_name">Mother’s Name</label>
+                <input type="text" class="form-control" id="mother_name" name="mother_name" required>
+            </div>
+            <div class="form-group">
+                <label for="present_address">Present Address</label>
+                <textarea class="form-control" id="present_address" name="present_address" rows="2" required></textarea>
+            </div>
+            <div class="form-group">
+                <label for="permanent_address">Permanent Address</label>
+                <textarea class="form-control" id="permanent_address" name="permanent_address" rows="2" required></textarea>
+            </div>
+            <div class="form-group">
+                <label for="date_of_birth">Date of Birth</label>
+                <input type="date" class="form-control" id="date_of_birth" name="date_of_birth" required>
+            </div>
+            <div class="form-group">
+                <label for="nationality">Nationality</label>
+                <input type="text" class="form-control" id="nationality" name="nationality" required>
+            </div>
+            <div class="form-group">
+                <label for="religion">Religion</label>
+                <select class="form-control" id="religion" name="religion" required>
+                    <option value="">Select Religion</option>
+                    <option value="Christianity">Christianity</option>
+                    <option value="Islam">Islam</option>
+                    <option value="Hinduism">Hinduism</option>
+                    <option value="Buddhism">Buddhism</option>
+                    <option value="Other">Other</option>
+                </select>
+            </div>
+            <div class="form-group">
+                <label for="marital_status">Marital Status</label>
+                <div>
+                    <label class="radio-inline mr-3">
+                        <input type="radio" name="marital_status" value="Single" required> Single
+                    </label>
+                    <label class="radio-inline mr-3">
+                        <input type="radio" name="marital_status" value="Married" required> Married
+                    </label>
+                    <label class="radio-inline">
+                        <input type="radio" name="marital_status" value="Other" required> Other
+                    </label>
+                </div>
+            </div>
+            <div class="form-group">
+                <label for="gender">Gender</label>
+                <div>
+                    <label class="radio-inline mr-3">
+                        <input type="radio" name="gender" value="Male" required> Male
+                    </label>
+                    <label class="radio-inline mr-3">
+                        <input type="radio" name="gender" value="Female" required> Female
+                    </label>
+                    <label class="radio-inline">
+                        <input type="radio" name="gender" value="Other" required> Other
+                    </label>
+                </div>
+            </div>
+            <div class="form-group">
+                <label for="blood_group">Blood Group</label>
+                <select class="form-control" id="blood_group" name="blood_group" required>
+                    <option value="">Select Blood Group</option>
+                    <option value="A+">A+</option>
+                    <option value="A-">A-</option>
+                    <option value="B+">B+</option>
+                    <option value="B-">B-</option>
+                    <option value="AB+">AB+</option>
+                    <option value="AB-">AB-</option>
+                    <option value="O+">O+</option>
+                    <option value="O-">O-</option>
+                </select>
             </div>
             <div class="form-group">
                 <label for="professional_title">Professional Title</label>
@@ -96,12 +192,10 @@ if($_SERVER['REQUEST_METHOD'] == 'POST') {
                 <div id="skills_section"></div>
             </div>
             <div class="form-group">
+                <label for="languages
                 <label for="languages">Languages</label>
-                <textarea class="form-control" id="languages" name="languages" rows="3" required></textarea>
-            </div>
-            <div class="form-group">
-                <label for="personal_info">Personal Info</label>
-                <textarea class="form-control" id="personal_info" name="personal_info" rows="3" required></textarea>
+                <button type="button" class="btn btn-secondary btn-sm float-right mb-2" id="add_language">Add Language</button>
+                <div id="languages_section"></div>
             </div>
             <div class="form-group">
                 <label for="email">Email</label>
@@ -175,6 +269,7 @@ if($_SERVER['REQUEST_METHOD'] == 'POST') {
         let expCount = 1;
         let eduCount = 1;
         let skillCount = 1;
+        let langCount = 1;
 
         document.getElementById('add_experience').addEventListener('click', function() {
             let expSection = document.getElementById('experience_section');
@@ -203,8 +298,7 @@ if($_SERVER['REQUEST_METHOD'] == 'POST') {
                 <div class="form-group">
                     <label for="description">Description</label>
                     <textarea class="form-control" name="experience[${expCount}][description]" rows="3" required></textarea>
-                </div>
-            `;
+                </div>`;
             expSection.appendChild(expEntry);
             expCount++;
         });
@@ -232,8 +326,7 @@ if($_SERVER['REQUEST_METHOD'] == 'POST') {
                         <label for="end_date">End Date</label>
                         <input type="date" class="form-control" name="education[${eduCount}][end_date]" required>
                     </div>
-                </div>
-            `;
+                </div>`;
             eduSection.appendChild(eduEntry);
             eduCount++;
         });
@@ -243,11 +336,21 @@ if($_SERVER['REQUEST_METHOD'] == 'POST') {
             let skillEntry = document.createElement('div');
             skillEntry.classList.add('form-group');
             skillEntry.innerHTML = `
-                <input type="text" class="form-control" name="skills[${skillCount}]" required>
-            `;
+                <input type="text" class="form-control mb-2" name="skills[]" required>`;
             skillsSection.appendChild(skillEntry);
             skillCount++;
         });
+
+        document.getElementById('add_language').addEventListener('click', function() {
+            let languagesSection = document.getElementById('languages_section');
+            let langEntry = document.createElement('div');
+            langEntry.classList.add('form-group');
+            langEntry.innerHTML = `
+                <input type="text" class="form-control mb-2" name="languages[]" required>`;
+            languagesSection.appendChild(langEntry);
+            langCount++;
+        });
     </script>
 </body>
+
 </html>
