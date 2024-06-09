@@ -72,7 +72,7 @@ $cover_letter_result = mysqli_query($conn, $cover_letter_query);
                                 <p class="card-text"><strong>Professional Title:</strong> <?php echo htmlspecialchars($resume['professional_title']); ?></p>
                                 <a href="view_resume.php?id=<?php echo $resume['resume_id']; ?>" class="btn btn-info">View</a>
                                 <a href="edit_resume.php?id=<?php echo $resume['resume_id']; ?>" class="btn btn-warning">Edit</a>
-                                <a href="delete_resume.php?id=<?php echo $resume['resume_id']; ?>" class="btn btn-danger" onclick="return confirm('Are you sure you want to delete this resume?');">Delete</a>
+                                <a href="delete_resume.php?id=<?php echo $resume['resume_id']; ?>" class="btn btn-danger" onclick="return">Delete</a>
                             </div>
                         </div>
                     </div>
