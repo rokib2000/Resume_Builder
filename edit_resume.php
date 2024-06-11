@@ -151,10 +151,10 @@ if ($_SERVER['REQUEST_METHOD'] == 'POST') {
             <div class="mb-3">
                 <label for="marital_status" class="form-label">Marital Status</label>
                 <div>
-                    <label class="form-check-label me-3">
+                    <label class="form-check-label mr-4 ml-3">
                         <input type="radio" class="form-check-input" name="marital_status" value="Single" <?php if ($resume['marital_status'] == 'Single') echo 'checked'; ?> required> Single
                     </label>
-                    <label class="form-check-label me-3">
+                    <label class="form-check-label mr-4">
                         <input type="radio" class="form-check-input" name="marital_status" value="Married" <?php if ($resume['marital_status'] == 'Married') echo 'checked'; ?> required> Married
                     </label>
                     <label class="form-check-label">
@@ -165,10 +165,10 @@ if ($_SERVER['REQUEST_METHOD'] == 'POST') {
             <div class="mb-3">
                 <label for="gender" class="form-label">Gender</label>
                 <div>
-                    <label class="form-check-label me-3">
+                    <label class="form-check-label mr-4 ml-3">
                         <input type="radio" class="form-check-input" name="gender" value="Male" <?php if ($resume['gender'] == 'Male') echo 'checked'; ?> required> Male
                     </label>
-                    <label class="form-check-label me-3">
+                    <label class="form-check-label mr-4">
                         <input type="radio" class="form-check-input" name="gender" value="Female" <?php if ($resume['gender'] == 'Female') echo 'checked'; ?> required> Female
                     </label>
                     <label class="form-check-label">
