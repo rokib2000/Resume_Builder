@@ -57,6 +57,7 @@ $cover_letter_result = mysqli_query($conn, $cover_letter_query);
             <div>
                 <a href="input_resume.php" class="btn btn-primary btn-add-resume">Create New Resume</a>
                 <a href="input_cover_letter.php" class="btn btn-secondary btn-add-cover-letter">Create New Cover Letter</a>
+                <a href="logout.php" class="btn btn-danger btn-add-cover-letter">Log Out</a>
             </div>
         </div>
 
