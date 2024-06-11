@@ -85,24 +85,29 @@ $cover_letter_result = mysqli_query($conn, $cover_letter_query);
 
         <h3 class="mt-5">Cover Letters</h3>
         <?php if (mysqli_num_rows($cover_letter_result) > 0): ?>
-            <div class="row">
-                <?php while ($cover_letter = mysqli_fetch_assoc($cover_letter_result)): ?>
-                    <div class="col-md-6">
-                        <div class="card">
-                            <div class="card-body">
-                                <h5 class="card-title"><?php echo htmlspecialchars($cover_letter['title']); ?></h5>
-                                <p class="card-text"><strong>Content:</strong> <?php echo nl2br(htmlspecialchars($cover_letter['content'])); ?></p>
-                                <a href="view_cover_letter.php?id=<?php echo $cover_letter['cover_letter_id']; ?>" class="btn btn-info">View</a>
-                                <a href="edit_cover_letter.php?id=<?php echo $cover_letter['cover_letter_id']; ?>" class="btn btn-warning">Edit</a>
-                                <a href="delete_cover_letter.php?id=<?php echo $cover_letter['cover_letter_id']; ?>" class="btn btn-danger" onclick="return confirm('Are you sure you want to delete this cover letter?');">Delete</a>
-                            </div>
-                        </div>
+    <div class="row">
+        <?php while ($cover_letter = mysqli_fetch_assoc($cover_letter_result)): ?>
+            <div class="col-md-6">
+                <div class="card">
+                    <div class="card-body">
+                        <h5 class="card-title"><?php echo htmlspecialchars($cover_letter['your_name']); ?></h5>
+                        <p class="card-text">
+                            <strong>Email:</strong> <?php echo htmlspecialchars($cover_letter['email']); ?><br>
+                            <strong>Phone:</strong> <?php echo htmlspecialchars($cover_letter['phone_number']); ?><br>
+                            <strong>Date:</strong> <?php echo htmlspecialchars($cover_letter['date']); ?><br>
+                            <!-- Add other relevant fields here -->
+                        </p>
+                        <a href="view_cover_letter.php?id=<?php echo $cover_letter['id']; ?>" class="btn btn-info">View</a>
+                        <a href="edit_cover_letter.php?id=<?php echo $cover_letter['id']; ?>" class="btn btn-warning">Edit</a>
+                        <a href="delete_cover_letter.php?id=<?php echo $cover_letter['id']; ?>" class="btn btn-danger" onclick="return confirm('Are you sure you want to delete this cover letter?');">Delete</a>
                     </div>
-                <?php endwhile; ?>
+                </div>
             </div>
-        <?php else: ?>
-            <p>You have not created any cover letters yet. Click the "Create New Cover Letter" button to get started.</p>
-        <?php endif; ?>
+        <?php endwhile; ?>
+    </div>
+<?php else: ?>
+    <p>You have not created any cover letters yet. Click the "Create New Cover Letter" button to get started.</p>
+<?php endif; ?>
     </div>
 
     <script src="https://code.jquery.com/jquery-3.5.1.slim.min.js"></script>
