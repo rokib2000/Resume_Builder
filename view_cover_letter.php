@@ -40,12 +40,18 @@ $cover_letter = mysqli_fetch_assoc($result);
 <div class="container">
     <h2>Cover Letter</h2>
 
-    <p><?php echo $cover_letter['date']; ?></p>
+    <p><?php echo $cover_letter['date']; ?></p><br>
+
+    <p><?php echo $cover_letter['your_name']; ?></p>
+    <p><?php echo $cover_letter['your_address']; ?></p>
+    <p><?php echo $cover_letter['city_state_zip']; ?></p><br>
+    <!-- <p><?php echo $cover_letter['email']; ?></p>
+    <p><?php echo $cover_letter['phone_number']; ?></p><br> -->
 
     <p><?php echo $cover_letter['employer_name']; ?></p>
     <p><?php echo $cover_letter['company_name']; ?></p>
     <p><?php echo $cover_letter['company_address']; ?></p>
-    <p><?php echo $cover_letter['city_state_zip']; ?></p>
+    <p><?php echo $cover_letter['company_city_state_zip']; ?></p><br>
 
     <p>Dear <?php echo $cover_letter['employer_name']; ?>,</p>
 
@@ -56,7 +62,7 @@ $cover_letter = mysqli_fetch_assoc($result);
     <p>I am particularly interested in this role because <?php echo $cover_letter['interest_reason']; ?>. I look forward to discussing how I can support your team.</p>
 
     <p>Thank you for considering my application. Please contact me at <?php echo $cover_letter['phone_number']; ?> or <?php echo $cover_letter['email']; ?> to schedule an interview.</p>
-
+<br>
     <p>Sincerely,</p>
 
     <p><?php echo $cover_letter['your_name']; ?></p>
